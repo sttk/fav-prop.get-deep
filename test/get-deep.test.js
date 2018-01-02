@@ -209,4 +209,21 @@ describe('fav.prop.get-deep', function() {
     expect(getDeep(obj, [a, b, c])).to.equal(obj[a][b][c]);
     expect(getDeep(obj, [a, b, c])).to.equal(123);
   });
+
+  it('Should not throw an error when 2nd arg is a Symbol array', function() {
+    if (typeof Symbol !== 'function') {
+      this.skip();
+      return;
+    }
+
+    var a = Symbol('a'), b = Symbol('b'), c = Symbol('c');
+    var obj = {};
+    obj[a] = {};
+    obj[a][b] = {};
+    obj[a][b][c] = 3;
+
+    expect(getDeep(obj, [[a], b, c])).to.equal(undefined);
+    expect(getDeep(obj, [a, [b], c])).to.equal(undefined);
+    expect(getDeep(obj, [a, b, [c]])).to.equal(undefined);
+  });
 });
