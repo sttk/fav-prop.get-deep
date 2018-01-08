@@ -41,7 +41,7 @@
   "dependencies": {
     "@fav/prop.assign": "^0.1.2",
     "@fav/prop.enum-own-props": "^0.4.0",
-    "@fav/type.is-array": "^0.7.0"
+    "@fav/type.is-array": "^1.0.0"
   },
   "devDependencies": {
     "browserify": "^14.5.0",
