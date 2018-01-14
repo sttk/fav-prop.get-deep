@@ -8,7 +8,7 @@ function getDeep(obj, propPath) {
   }
 
   if (!isArray(propPath)) {
-    propPath = [propPath];
+    return undefined;
   }
 
   if (obj == null) {

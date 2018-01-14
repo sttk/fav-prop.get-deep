@@ -44,7 +44,6 @@ Gets a property value in property tree of an object with a property path.
 
 A property path is an array of keys/symbols which are passed from root to a target property in property tree of *obj* object.
 For example, the property path of `c` in `{ a: { b: { c: 1 } } }` is `['a', 'b', 'c']`.
-For a top property, a string or a symbol can be specified.
 
 This function is targeted at all properties, which are enumerable and unenumerable, own and inherited.
 
