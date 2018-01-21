@@ -86,7 +86,10 @@ describe('fav.prop.get-deep', function() {
     expect(getDeep(obj, '')).to.equal(undefined);
     expect(getDeep(obj, 'a00')).to.equal(undefined);
     expect(getDeep(obj, { a00: 'a00', })).to.equal(undefined);
-    expect(getDeep(obj, Symbol('a00'))).to.equal(undefined);
+
+    if (typeof Symbol === 'function') {
+      expect(getDeep(obj, Symbol('a00'))).to.equal(undefined);
+    }
   });
 
   it('Should get obj itself when obj is primitive type and propPath is' +
