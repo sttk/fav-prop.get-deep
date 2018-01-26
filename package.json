@@ -39,8 +39,6 @@
   },
   "homepage": "https://github.com/sttk/fav-prop.get-deep#readme",
   "dependencies": {
-    "@fav/prop.assign": "^1.0.0",
-    "@fav/prop.enum-own-props": "^1.0.0",
     "@fav/type.is-array": "^1.0.0"
   },
   "devDependencies": {
