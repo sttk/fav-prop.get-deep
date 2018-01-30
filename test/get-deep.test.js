@@ -239,4 +239,40 @@ describe('fav.prop.get-deep', function() {
     expect(getDeep(obj, [a, [b], c])).to.equal(undefined);
     expect(getDeep(obj, [a, b, [c]])).to.equal(undefined);
   });
+
+  it('Should not allow to use an array as a property', function() {
+    var obj = { a: 1, b: { c: 2 }, 'd,e': 3 };
+    expect(getDeep(obj, ['a'])).to.equal(1);
+    expect(getDeep(obj, [['a']])).to.equal(undefined);
+    expect(getDeep(obj, ['b', 'c'])).to.equal(2);
+    expect(getDeep(obj, [['b'], 'c'])).to.equal(undefined);
+    expect(getDeep(obj, ['b', ['c']])).to.equal(undefined);
+    expect(getDeep(obj, ['d,e'])).to.equal(3);
+    expect(getDeep(obj, [['d','e']])).to.equal(undefined);
+
+    if (typeof Symbol === 'function') {
+      obj = {};
+      var a = Symbol('a'), b = Symbol('b'), c = Symbol('c'),
+          d = Symbol('d'), e = Symbol('e');
+      var de = [d.toString(), e.toString()].toString();
+      obj[a] = 1;
+      obj[a.toString()] = 11;
+      obj[b] = {};
+      obj[b][c] = 2;
+      obj[b][c.toString()] = 21;
+      obj[b.toString()] = {};
+      obj[b.toString()][c] = 22;
+      obj[de] = 3;
+      expect(getDeep(obj, [a])).to.equal(1);
+      expect(getDeep(obj, [a.toString()])).to.equal(11);
+      expect(getDeep(obj, [[a]])).to.equal(undefined);
+      expect(getDeep(obj, [b, c])).to.equal(2);
+      expect(getDeep(obj, [b, c.toString()])).to.equal(21);
+      expect(getDeep(obj, [b.toString(), c])).to.equal(22);
+      expect(getDeep(obj, [[b], c])).to.equal(undefined);
+      expect(getDeep(obj, [b, [c]])).to.equal(undefined);
+      expect(getDeep(obj, [de])).to.equal(3);
+      expect(getDeep(obj, [[d,e]])).to.equal(undefined);
+    }
+  });
 });

@@ -18,13 +18,12 @@ function getDeep(obj, propPath) {
 
   for (var i = 0, n = propPath.length; i < n; i++) {
     var prop = propPath[i];
-    try {
-      obj = obj[prop];
-    } catch (e) {
-      // If `prop` is an array of Symbol, obj[prop] throws an error,
-      // but this function suppress it and return undefined.
-      obj = undefined;
+    if (Array.isArray(prop)) {
+      // This function doesn't allow to use an array as a property.
+      return undefined;
     }
+
+    obj = obj[prop];
     if (obj == null) {
       break;
     }

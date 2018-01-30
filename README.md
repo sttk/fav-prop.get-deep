@@ -47,6 +47,9 @@ For example, the property path of `c` in `{ a: { b: { c: 1 } } }` is `['a', 'b',
 
 This function is targeted at all properties, which are enumerable and unenumerable, own and inherited.
 
+***NOTE:*** *All versions of Node.js allows to use a string array for getting or setting property, like `obj[['a','b']] == obj['a,b']`. An Symbol array is allowed as same until v4, but is not allowed on v5 and later (TypeError is thrown).
+To support same behaviors for all versions, this function does not allow to use an array as a property. (Thus, a property path needs to be always one dimensional array).*
+
 **Parameters:**
 
 | Parameter   | Type   | Description                         |
