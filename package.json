@@ -1,6 +1,6 @@
 {
   "name": "@fav/prop.get-deep",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Gets a property value in property tree of an object with a property path.",
   "main": "index.js",
   "files": [
